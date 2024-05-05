@@ -1,0 +1,4 @@
+fileignoreconfig:
+- filename: ingest_to_library.py
+  checksum: fc681b0160dbb3f742bc4973ccb263adf7a4e006af5a9063648e010d357d1ed2
+version: ""
