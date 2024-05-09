@@ -1,8 +1,4 @@
-import os
-import sys
 import csv
-from dotenv import load_dotenv
-from ai21 import AI21Client
 
 f = open("data/txt_ldc.txt", "w")
 
