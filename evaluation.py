@@ -30,6 +30,7 @@ def run_evaluation(upload):
         extracted_query = upload[l].partition("'Definition': ")[-1]
         category_prefix = upload[l].partition(", 'Definition'")[:1]
 
+        # Use interview transcript file ID vs. label
         response = client.library.search.create(query=extracted_query, labels=["demo1"])
         if (len(response.results) > 0):
             results_csv.write(f"Evaluation: YES | Criteria: {category_prefix} {extracted_query} Source sample: {response.results[0]}")
