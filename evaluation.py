@@ -1,8 +1,6 @@
-import csv
 import os
 from dotenv import load_dotenv
 from ai21 import AI21Client
-from transformers import AutoModelForCausalLM, AutoTokenizer
 
 load_dotenv()
 
@@ -44,7 +42,6 @@ def print_eval(upload):
         extracted_query = upload[l].partition("'Definition': ")[-1]
         category_prefix = upload[l].partition(", 'Definition'")[:1]
 
-        # QUESTION: despite the label indication the query still searches all docs in RAG engine - help?
         response = client.library.search.create(query=extracted_query, labels=["demo1"])
         if (len(response.results) > 0):
              print(f"Evaluation: YES | Criteria: {category_prefix} {extracted_query} Source sample: {response.results[0]}")
