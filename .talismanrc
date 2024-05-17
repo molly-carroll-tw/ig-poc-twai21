@@ -12,3 +12,8 @@ fileignoreconfig:
 - filename: get_lib.py
   checksum: 8b0de7bcb54d705c79a5581f7be861a0b904a6b8c603f32e38525e7be09505ca
 version: ""
+
+fileignoreconfig:
+- filename: jamba_eval.py
+  checksum: 3fe86c39da0c8e93d1aa6a3bd4dffc813050042c5e7f586a075a16275d6734f7
+version: ""

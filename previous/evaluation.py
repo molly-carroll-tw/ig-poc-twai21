@@ -51,4 +51,5 @@ def print_eval(upload):
         else:
              print(f"Evaluation: No/Not Found | Criteria: {category_prefix} {extracted_query}")
 
-print_eval(full_dict_prep)
+# print_eval(full_dict_prep)
+run_evaluation(full_dict_prep)
