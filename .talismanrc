@@ -17,3 +17,10 @@ fileignoreconfig:
 - filename: jamba_eval.py
   checksum: 3fe86c39da0c8e93d1aa6a3bd4dffc813050042c5e7f586a075a16275d6734f7
 version: ""
+
+fileignoreconfig:
+- filename: viz_jamba_2.py
+  checksum: 4ed29ac2fc4ec4b0677e61a6d52c6f41bb66642ef5cd78018153df5501180b54
+- filename: viz_jamba_eval.py
+  checksum: a529d48fafc1f1ecc0b7646ade26da62dd014e84748586392bc6fc6ff7037740
+version: ""

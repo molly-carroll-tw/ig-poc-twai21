@@ -21,7 +21,6 @@ df = pd.DataFrame.from_records(rows)
 
 df.columns = df.iloc[0]
 df = df.iloc[1:]
-df.head()
 
 interview = open("data/interview_transcript.txt", "r").read()
 
@@ -31,7 +30,56 @@ df['jamba_citation'] = 'NA'
 criteria = []
 message = []
 
-# why 524 timeout error?
+for i in range(len(df)):
+  criteria_i = df['Definition'][i+1] + '. Attribute: ' + df['Attribute'][i+1] + '. Category: ' + df['Category'][i+1]
+
+
+  criteria.append(
+      criteria_i
+      )
+
+  message.append(f"""Classify the evaluation results for each criteria based on the following interview transcript into 'Yes' or 'No'.
+      If there is not enough information in the interview transcript to provide the evaluation results for a criteria, provide output as 'NA'.
+
+      <output>
+      Yes
+      No
+      NA
+      </output>
+
+      <interview transcript>
+
+      """ + interview + f"""
+
+      </interview transcript>
+
+      <criteria>
+
+      """ + criteria_i + f"""
+
+      </criteria>
+
+      Now classify the evaluation results for the critera based on the interview transcript.
+      The output should be binary, without any other preamble text.
+      """
+      )
+
+  messages = [
+      ChatMessage(content=message[i], role="user"),
+  ]
+
+  response = client.chat.completions.create(
+      messages=messages,
+      model="jamba-instruct",
+      temperature=0
+  )
+
+  # print(i)
+  # print(response.choices[0].message.content)
+  # df['jamba_eval'][i] = response.choices[0].message.content
+
+criteria = []
+message = []
 
 for i in range(len(df)):
   criteria_i = df['Definition'][i+1] + '. Attribute: ' + df['Attribute'][i+1] + '. Category: ' + df['Category'][i+1]
@@ -70,6 +118,21 @@ for i in range(len(df)):
       temperature=0
   )
 
-  print(i)
-  print(response.choices[0].message.content)
-  df['jamba_citation'][i] = response.choices[0].message.content
+#   print(i)
+#   print(response.choices[0].message.content)
+#   df['jamba_citation'][i] = response.choices[0].message.content
+
+
+
+        messages_1 = ChatMessage(content=prompt_1_list[i], role="user")
+
+        response_1 = client.chat.completions.create(
+            messages=messages_1,
+            model="jamba-instruct",
+            temperature=0
+        )
+
+        answer = response_1.choices[0].message.content
+        df['jamba_eval'] = answer
+
+        return df
